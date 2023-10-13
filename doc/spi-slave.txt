@@ -1,0 +1,21 @@
+devel@pi4-20:~ $ git clone https://github.com/develone/spi-slave.git -b dev
+
+devel@pi4-20:~ $ cd spi-slave/Verilog/sim/
+
+devel@pi4-20:~/spi-slave/Verilog/sim $ cp ../source/SPI_Slave.v .
+
+devel@pi4-20:~/spi-slave/Verilog/sim $ cp ~/spi-master/Verilog/source/SPI_Master.v .
+
+devel@pi4-20:~/spi-slave/Verilog/sim $ iverilog -g2005-sv -o dsn SPI_Slave_TB.sv SPI_Slave.v SPI_Master.v 
+SPI_Slave_TB.sv:68: warning: parameter NUM_SLAVES not found in SPI_Slave_TB.SPI_Master_UUT.
+SPI_Slave_TB.sv:104: sorry: Subroutine ports with unpacked dimensions are not yet supported.
+SPI_Slave_TB.sv:142: error: Array dataPayload needs an array index here.
+2 error(s) during elaboration.
+
+devel@pi4-20:~/spi-slave/Verilog/sim $ iverilog -g2005-sv -o dsn \
+ SPI_Slave_TB.sv ../source/SPI_Slave.v \
+~/spi-master/Verilog/source/SPI_Master.v 
+SPI_Slave_TB.sv:68: warning: parameter NUM_SLAVES not found in SPI_Slave_TB.SPI_Master_UUT.
+SPI_Slave_TB.sv:104: sorry: Subroutine ports with unpacked dimensions are not yet supported.
+SPI_Slave_TB.sv:142: error: Array dataPayload needs an array index here.
+2 error(s) during elaboration.
